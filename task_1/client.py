@@ -4,7 +4,7 @@
 import socket
 
 host = '127.0.0.1'
-port = 5556
+port = 55556
 
 
 def main():
@@ -18,6 +18,8 @@ def main():
     a = input()
 
     server_socket_connection.send(a.encode('utf-8'))
+
+    print(server_socket_connection.recv(1024).decode('utf-8'))
 
 
 if __name__ == '__main__':
