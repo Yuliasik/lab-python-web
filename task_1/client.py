@@ -13,13 +13,19 @@ def main():
 
     server_socket_connection.connect((host, port))
 
-    print(server_socket_connection.recv(1024).decode('utf-8'))
+    while True:
+        print(server_socket_connection.recv(1024).decode('utf-8'))
 
-    a = input()
+        a = input()
 
-    server_socket_connection.send(a.encode('utf-8'))
+        server_socket_connection.send(a.encode('utf-8'))
 
-    print(server_socket_connection.recv(1024).decode('utf-8'))
+        if a == '***':
+            break
+
+        print(server_socket_connection.recv(1024).decode('utf-8'))
+
+    print('Connection closed!')
 
 
 if __name__ == '__main__':
