@@ -22,29 +22,32 @@ while current < number_connections:
     client_socket_connection, addr = server_socket_connection.accept()
     print('Got a connection from {}'.format(addr))
 
-    _ = 'Hello, client. Input your message'
-    client_socket_connection.send(_.encode('utf-8'))
+    _ = 'Hello, client. Input your message. Input *** to close connection'
 
-    got = message = client_socket_connection.recv(1024)
+    while True:
+        client_socket_connection.send(_.encode('utf-8'))
 
-    now = datetime.now()
-    now = now.strftime("%d/%m/%y %H:%M:%S")
+        message = client_socket_connection.recv(1024)
 
-    print('(' + now + ') :' + message.decode('utf-8'))
+        now = datetime.now()
+        now = now.strftime("%d/%m/%y %H:%M:%S")
 
-    time.sleep(5)
+        print('(' + now + ') :' + message.decode('utf-8'))
 
-    now = datetime.now()
-    now = now.strftime("%d/%m/%y %H:%M:%S")
-    print('(' + now + ') : RESPONSED TO CLIENT')
+        if message.decode('utf-8') == '***':
+            client_socket_connection.close()
+            break
 
-    sent = client_socket_connection.send(message)
+        time.sleep(5)
 
-    if got == sent:
-        client_socket_connection.close()
+        now = datetime.now()
+        now = now.strftime("%d/%m/%y %H:%M:%S")
+        print('(' + now + ') : RESPONSED TO CLIENT')
+
+        client_socket_connection.send(message)
 
     print('\n')
     current += 1
-
-server_socket_connection.close()
+    
+server_socket_connection.close()    
 print('All connections are used, goodbye!')
