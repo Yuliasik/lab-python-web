@@ -2,7 +2,8 @@
 # -*- coding:utf-8 -*-
 
 import socket
-from datetime import date, datetime
+from datetime import datetime
+import time
 
 host = '127.0.0.1'
 port = 55556
@@ -24,13 +25,24 @@ while current < number_connections:
     _ = 'Hello, client. Input your message'
     client_socket_connection.send(_.encode('utf-8'))
 
-    message = client_socket_connection.recv(1024).decode('utf-8')
-    client_socket_connection.close()
+    got = message = client_socket_connection.recv(1024)
 
     now = datetime.now()
-    now = now.strftime("%d/%m/%y %H:%M")
+    now = now.strftime("%d/%m/%y %H:%M:%S")
 
-    print('(' + now + ') :' + message)
+    print('(' + now + ') :' + message.decode('utf-8'))
+
+    time.sleep(5)
+
+    now = datetime.now()
+    now = now.strftime("%d/%m/%y %H:%M:%S")
+    print('(' + now + ') : RESPONSED TO CLIENT')
+
+    sent = client_socket_connection.send(message)
+
+    if got == sent:
+        client_socket_connection.close()
+
     print('\n')
     current += 1
 
