@@ -3,6 +3,18 @@
 
 import cgi
 import html
+import os
+import http.cookies
+
+cookies = http.cookies.SimpleCookie(os.environ.get("HTTP_COOKIE"))
+
+repeats = cookies.get("repeats")
+if repeats is None:
+    print("Set-cookie: repeats=0")
+else:
+    _ = int(repeats.value) + 1
+    print(f"Set-cookie: repeats={str(_)}")
+    repeats = _
 
 print("Content-type: text/html\n")
 
@@ -71,6 +83,10 @@ print(f"""
         <tr>
             <td>Count of days</td>
             <td>{count_days}</td>
+        </tr>
+        <tr>
+            <td>Count of sending data</td>
+            <td>{repeats}</td>
         </tr>
     </table>
 </form>
