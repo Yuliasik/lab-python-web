@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sample form</title>
+    <style>
+        body {
+            background: aliceblue;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        table {
+            border: 1px solid #5a5a5a;
+            margin: 15px auto auto;
+            width: 50%;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(45, 45, 45, 0.61);
+            background: #ebf1ff;
+            border-collapse: collapse;
+        }
+
+        th {
+            height: 30px;
+            background: #d7e3ff;
+            box-shadow: 0 5px 3px rgba(121, 121, 121, 0.35);
+        }
+
+        td{
+            padding: 3px;
+        }
+
+        input[type="submit"] {
+            width: 20%;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/cgi-bin/form-handler.py">
+    <table>
+        <tr>
+            <th>Label</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td><label for="city">City</label></td>
+            <td><input type="text" name="city" id="city"></td>
+        </tr>
+        <tr>
+            <td><label for="country">Country</label></td>
+            <td><input type="text" name="country" id="country"></td>
+        </tr>
+        <tr>
+            <td><label for="is-lunches-enabled">Is lunches enabled?</label></td>
+            <td><input type="checkbox" name="is-lunches-enabled" id="is-lunches-enabled"></td>
+        </tr>
+        <tr>
+            <td>Count of days</td>
+            <td>
+                <input type="radio" name="days-5" id="days-5" value="5"> <label for="days-5">5 days</label>
+                <input type="radio" name="days-7" id="days-7" value="7"> <label for="days-7">7 days</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Send data!"></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
