@@ -1,0 +1,52 @@
+{% from "_render_field.html" import render_field %}
+
+{% extends "parent.html" %}
+
+{%block title%}
+User login form
+{% endblock %}
+
+{%block content %}
+<div class="form-login overflow-auto" style="height: 500px">
+    <h1>Login form:</h1>
+    <form method="POST" action="{{ url_for('form') }}">
+        {{ form.csrf_token }}
+        
+        <p>
+        {{ render_field(form.login) }}
+        </p>
+        <p>
+        {{ render_field(form.password) }}
+        </p>
+        <p>
+        {{ render_field(form.password_r) }}
+        </p>
+
+        <h1>Examenation list</h1>
+
+        <p>
+        {{ render_field(form.e_number) }}
+        </p>
+        <p>
+        {{ render_field(form.e_pin) }}
+        </p>
+        <p>
+        {{ render_field(form.e_year) }}
+        </p>
+
+        <h1>Еducation document</h1>
+        
+        <p>
+        {{ render_field(form.d_series) }}
+        </p>
+        <p>
+        {{ render_field(form.d_number) }}
+        </p>
+
+        <br> 
+        <input type="submit" value="Submit form!">
+    </form>
+</div>
+{% endblock %}
+
+
