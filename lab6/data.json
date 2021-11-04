@@ -1,0 +1,20 @@
+{
+    "dsadsad": {
+        "login": "dsadsad",
+        "password": "1234512345",
+        "e_number": "1234567",
+        "e_pin": "1234",
+        "e_year": "2013",
+        "d_series": "XX",
+        "d_number": "88888888"
+    },
+    "asdsadas": {
+        "login": "asdsadas",
+        "password": "qwertyui",
+        "e_number": "0000000",
+        "e_pin": "0000",
+        "e_year": "2016",
+        "d_series": "C12",
+        "d_number": "666666"
+    }
+}
