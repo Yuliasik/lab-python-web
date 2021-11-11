@@ -1,0 +1,42 @@
+{% from "_render_result.html" import render_result %}
+
+{% extends "parent.html" %}
+
+{%block title%}
+Form result
+{% endblock %}
+
+{%block content %}
+<div class="form-result">
+    {{ info }}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container w-50 m-1">
+                {% for category, message in messages %}
+                    <div class="alert alert-warning" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {{ render_result(form.login) }}
+    {{ render_result(form.password) }}
+    {{ render_result(form.password_r) }}
+    
+    <h3>Examenation list</h3>
+
+    {{ render_result(form.e_number) }}
+    {{ render_result(form.e_pin) }}
+    {{ render_result(form.e_year) }}
+
+    <h3>Document about education</h3>
+
+    {{ render_result(form.d_series) }}
+    {{ render_result(form.d_number) }}
+
+</div>
+{% endblock %}
+
+
