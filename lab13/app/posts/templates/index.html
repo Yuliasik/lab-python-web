@@ -1,0 +1,35 @@
+{% from "_render_field.html" import render_field %}
+{% extends 'parent.html' %}
+
+{% block title %}
+All posts
+{% endblock %}
+
+{% block content %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static', filename='post.css') }}">
+<div class="posts_all_container row">
+    {% for post in all_posts %}
+    <div class="post_each_container col col-sm-4">
+        <a href="{{ url_for('posts.view', id=post.id) }}" class="post_all {{ 'enabled' if post.is_enabled else 'disabled' }}" title="click to expand">
+            <div class="posts_all_info">
+                <span>
+                    {{ post.type.name }}
+                </span>
+                <span>
+                    {{ post.created }}
+                </span>
+            </div>
+            <div class="posts_all_image" style="background-image: url({{ image }}/{{ post.image }});"></div>
+            <div class="posts_all_detail">
+                <span class="posts_all_title">
+                    {{ post.title }} 
+                </span>
+                <span class="posts_all_description">
+                    {{ post.text[:200] }}...
+                </span>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
