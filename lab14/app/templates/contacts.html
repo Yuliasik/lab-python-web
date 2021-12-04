@@ -1,0 +1,19 @@
+{% extends "parent.html" %}
+
+{%block title%}
+About me
+{% endblock %}
+
+{%block content %}
+{% if is_show_contacts_front %}
+<div class="contacts">
+    Here can be my contacts
+</div>
+{% else %}
+<div class="contacts">
+    My contacts cannot be shown
+</div>
+{% endif %}
+{% endblock %}
+
+
