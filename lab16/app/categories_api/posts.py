@@ -12,7 +12,7 @@ import jwt
 resourse_fields = {
     'id': fields.Integer,
     'title': fields.String,
-    'description': fields.String,
+    'text': fields.String,
     'image': fields.String,
     'created': fields.DateTime,
     'is_enabled': fields.Boolean,
@@ -77,12 +77,13 @@ class PostApi(Resource):
     def get(self, id):
         return Post.query.get_or_404(id)
 
+    @token_required
     @marshal_with(resourse_fields)
     def post(self, id):
         data = request.get_json()['post']
         post_new = Post(
             title=data['title'],
-            description=data['description'],
+            text=data['text'],
             image=data['image'],
             created=db.func.now(),
             is_enabled=data['is_enabled'],
@@ -94,19 +95,20 @@ class PostApi(Resource):
         db.session.commit()
         return post_new
 
+    @token_required
     @marshal_with(resourse_fields)
     def put(self, id):
         data = request.get_json()['post']
         post_old = Post.query.get_or_404(id)
         post_new = Post(
             title=data['title'],
-            description=data['description'],
+            text=data['text'],
             image=data['image'],
             user_id=data['user_id'],
             category_id=data['category_id']
         )
         post_old.title = post_new.title
-        post_old.description = post_new.description
+        post_old.text = post_new.text
         post_old.image = post_new.image
         post_old.user_id = post_new.user_id
         post_old.category_id = post_new.category_id
@@ -114,6 +116,7 @@ class PostApi(Resource):
         db.session.commit()
         return post_old
 
+    @token_required
     def delete(self, id):
         post_old = Post.query.get_or_404(id)
         db.session.delete(post_old)
