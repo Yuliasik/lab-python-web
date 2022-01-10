@@ -7,8 +7,6 @@ class Config(object):
     DEVELOPMENT = False
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret!'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    API_LOGIN = 'admin'
-    API_PASSWORD = 'psswd'
 
 
 class QAConfig(Config):
