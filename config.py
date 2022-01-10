@@ -7,6 +7,8 @@ class Config(object):
     DEVELOPMENT = False
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret!'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    API_LOGIN = 'admin'
+    API_PASSWORD = 'psswd'
 
 
 class QAConfig(Config):
@@ -14,6 +16,8 @@ class QAConfig(Config):
     DEBUG = True
     WTF_CSRF_ENABLED = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'qa_site.db')
+    API_LOGIN = 'admin'
+    API_PASSWORD = 'psswd'
 
 
 class TestConfig(Config):
@@ -21,6 +25,9 @@ class TestConfig(Config):
     DEBUG = True
     WTF_CSRF_ENABLED = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test_site.db')
+    API_LOGIN = 'admin'
+    API_PASSWORD = 'psswd'
+    
 
 
 class ProdConfig(Config):
@@ -29,6 +36,8 @@ class ProdConfig(Config):
     API_PASSWORD = 'super_secret_password_yes_no'
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or \
                               'sqlite:///' + os.path.join(basedir, 'site.db')
+    API_LOGIN = 'admin'
+    API_PASSWORD = 'psswd'
 
 
 config = {
